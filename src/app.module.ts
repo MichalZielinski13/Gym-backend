@@ -1,9 +1,12 @@
-import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
+import { Module } from "@nestjs/common";
+import { AppController } from "./app.controller";
+import { AppService } from "./app.service";
+import { MongooseModule } from "@nestjs/mongoose";
+import { UsersModule } from "./users/users.module";
 
 @Module({
-  imports: [],
+  //import bazy danych
+  imports: [MongooseModule.forRoot("mongodb://localhost/gym"), UsersModule],
   controllers: [AppController],
   providers: [AppService],
 })
