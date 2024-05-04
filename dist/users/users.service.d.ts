@@ -26,10 +26,11 @@ import { Model } from "mongoose";
 import { User } from "./users.schema";
 import { CreateUserDto } from "./users.dto";
 export declare class UsersService {
-    private catModel;
-    constructor(catModel: Model<User>);
-    getById(): {
-        title: string;
-    };
-    create(createCatDto: CreateUserDto): Promise<User>;
+    private userModel;
+    constructor(userModel: Model<User>);
+    create(createUserDto: CreateUserDto): Promise<User>;
+    findAll(): Promise<User[]>;
+    findOne(id: string): Promise<User>;
+    update(id: string, updateUserDto: CreateUserDto): Promise<User>;
+    delete(id: string): Promise<User>;
 }

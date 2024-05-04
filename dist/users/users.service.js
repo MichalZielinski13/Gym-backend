@@ -18,15 +18,24 @@ const mongoose_1 = require("@nestjs/mongoose");
 const mongoose_2 = require("mongoose");
 const users_schema_1 = require("./users.schema");
 let UsersService = class UsersService {
-    constructor(catModel) {
-        this.catModel = catModel;
+    constructor(userModel) {
+        this.userModel = userModel;
     }
-    getById() {
-        return { title: "Hello World!" };
+    async create(createUserDto) {
+        const createdUser = new this.userModel(createUserDto);
+        return createdUser.save();
     }
-    async create(createCatDto) {
-        const createdCat = new this.catModel(createCatDto);
-        return createdCat.save();
+    async findAll() {
+        return this.userModel.find().exec();
+    }
+    async findOne(id) {
+        return this.userModel.findById(id).exec();
+    }
+    async update(id, updateUserDto) {
+        return this.userModel.findByIdAndUpdate(id, updateUserDto, { new: true });
+    }
+    async delete(id) {
+        return this.userModel.findByIdAndDelete(id);
     }
 };
 exports.UsersService = UsersService;

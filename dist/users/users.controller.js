@@ -20,27 +20,58 @@ let UsersController = class UsersController {
     constructor(usersService) {
         this.usersService = usersService;
     }
-    getById() {
-        return this.usersService.getById();
-    }
-    create(createUserDto) {
+    async create(createUserDto) {
         return this.usersService.create(createUserDto);
+    }
+    async findAll() {
+        return this.usersService.findAll();
+    }
+    async findOne(id) {
+        return this.usersService.findOne(id);
+    }
+    async update(id, updateUserDto) {
+        return this.usersService.update(id, updateUserDto);
+    }
+    async delete(id) {
+        return this.usersService.delete(id);
     }
 };
 exports.UsersController = UsersController;
-__decorate([
-    (0, common_1.Get)(),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
-    __metadata("design:returntype", void 0)
-], UsersController.prototype, "getById", null);
 __decorate([
     (0, common_1.Post)(),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [users_dto_1.CreateUserDto]),
-    __metadata("design:returntype", void 0)
+    __metadata("design:returntype", Promise)
 ], UsersController.prototype, "create", null);
+__decorate([
+    (0, common_1.Get)(),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", Promise)
+], UsersController.prototype, "findAll", null);
+__decorate([
+    (0, common_1.Get)(":id"),
+    __param(0, (0, common_1.Param)("id")),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", Promise)
+], UsersController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Put)(":id"),
+    __param(0, (0, common_1.Param)("id")),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, users_dto_1.CreateUserDto]),
+    __metadata("design:returntype", Promise)
+], UsersController.prototype, "update", null);
+__decorate([
+    (0, common_1.Delete)(":id"),
+    __param(0, (0, common_1.Param)("id")),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", Promise)
+], UsersController.prototype, "delete", null);
 exports.UsersController = UsersController = __decorate([
     (0, common_1.Controller)(),
     __metadata("design:paramtypes", [users_service_1.UsersService])
