@@ -29,3 +29,5 @@ export class UsersService {
     return this.userModel.findByIdAndDelete(id);
   }
 }
+
+//zmienić nazwy
